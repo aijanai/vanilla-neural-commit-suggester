@@ -1,0 +1,30 @@
+python3 -m sockeye.train \
+  --batch-size 80 \
+  --batch-type sentence \
+  --checkpoint-frequency 30000 \
+  --decode-and-evaluate 100 \
+  --decoder rnn \
+  --embed-dropout 0.2 \
+  --encoder rnn \
+  --initial-learning-rate 0.0001 \
+  --keep-last-params 4 \
+  --learning-rate-reduce-factor 0.7 \
+  --learning-rate-reduce-num-not-improved 2 \
+  --max-num-checkpoint-not-improved 4 \
+  --max-seq-len 100 \
+  --num-embed 512:512 \
+  --num-layers 8:8 \
+  --optimized-metric bleu \
+  --optimizer adam \
+  --rnn-attention-in-upper-layers \
+  --rnn-attention-type bilinear \
+  --rnn-decoder-hidden-dropout 0.2 \
+  --rnn-num-hidden 1024 \
+  --use-cpu \
+  --weight-init xavier \
+  --weight-init-scale 3.0 \
+  --weight-init-xavier-factor-type avg \
+  -d train_data \
+  -o sockeye-commit-suggester \
+  -vs test.3000.bpe.diff \
+  -vt test.3000.bpe.msg
