@@ -19,7 +19,7 @@ python3 -m sockeye.train \
   --num-embed 512:512 \
   --num-layers 6:6 \
   --source train.26208.diff \
-  --train train.26208.msg \
+  --target train.26208.msg \
   --output sockeye-commit-suggester \
   --validation-source test.3000.diff \
   --validation-target test.3000.msg
