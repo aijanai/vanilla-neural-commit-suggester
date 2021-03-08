@@ -2,7 +2,7 @@ python3 -m sockeye.train \
   --batch-size 64 \
   --batch-type sentence \
   --device-ids -2 \
-  --checkpoint-frequency 30000 \
+  --checkpoint-interval 30000 \
   --decode-and-evaluate 100 \
   --decoder ssru_transformer \
   --embed-dropout 0.2 \
