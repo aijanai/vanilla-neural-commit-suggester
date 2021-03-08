@@ -24,8 +24,8 @@ python3 -m sockeye.train \
   --weight-init xavier \
   --weight-init-scale 3.0 \
   --weight-init-xavier-factor-type avg \
-  -s train.26208.diff
-  -t train.26208.msg
+  -s train.26208.diff \
+  -t train.26208.msg \
   -o sockeye-commit-suggester \
-  -vs test.3000.bpe.diff \
-  -vt test.3000.bpe.msg
+  -vs test.3000.diff \
+  -vt test.3000.msg
