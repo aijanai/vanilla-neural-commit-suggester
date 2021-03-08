@@ -1,31 +1,25 @@
 python3 -m sockeye.train \
-  --batch-size 80 \
+  --batch-size 64 \
   --batch-type sentence \
+  --device-ids -2 \
   --checkpoint-frequency 30000 \
   --decode-and-evaluate 100 \
-  --decoder rnn \
+  --decoder ssru_transformer \
   --embed-dropout 0.2 \
-  --encoder rnn \
   --initial-learning-rate 0.0001 \
-  --keep-last-params 4 \
+  --keep-last-params 2 \
   --learning-rate-reduce-factor 0.7 \
   --learning-rate-reduce-num-not-improved 2 \
+  --encoder transformer \
   --max-num-checkpoint-not-improved 4 \
   --max-seq-len 100 \
-  --num-embed 512:512 \
-  --num-layers 8:8 \
   --optimized-metric bleu \
   --optimizer adam \
-  --rnn-attention-in-upper-layers \
-  --rnn-attention-type bilinear \
-  --rnn-decoder-hidden-dropout 0.2 \
-  --rnn-num-hidden 1024 \
   --use-cpu \
-  --weight-init xavier \
-  --weight-init-scale 3.0 \
-  --weight-init-xavier-factor-type avg \
-  -s train.26208.diff \
-  -t train.26208.msg \
-  -o sockeye-commit-suggester \
-  -vs test.3000.diff \
-  -vt test.3000.msg
+  --num-embed 512:512 \
+  --num-layers 6:6 \
+  --source train.26208.diff \
+  --train train.26208.msg \
+  --output sockeye-commit-suggester \
+  --validation-source test.3000.diff \
+  --validation-target test.3000.msg
