@@ -2,7 +2,7 @@ python3 -m sockeye.train \
   --batch-size 64 \
   --batch-type sentence \
   --device-ids -2 \
-  --checkpoint-interval 30000 \
+  --checkpoint-interval 15000 \
   --decode-and-evaluate 100 \
   --decoder ssru_transformer \
   --embed-dropout 0.2 \
@@ -15,7 +15,6 @@ python3 -m sockeye.train \
   --max-seq-len 100 \
   --optimized-metric bleu \
   --optimizer adam \
-  --use-cpu \
   --num-embed 512:512 \
   --num-layers 6:6 \
   --source train.26208.diff \
@@ -23,3 +22,4 @@ python3 -m sockeye.train \
   --output sockeye-commit-suggester \
   --validation-source test.3000.diff \
   --validation-target test.3000.msg
+#  --use-cpu \
