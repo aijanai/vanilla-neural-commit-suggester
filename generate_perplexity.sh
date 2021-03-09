@@ -1,2 +1,2 @@
 #!/bin/bash
-grep perplexity= -r $1 |grep Epoch|awk '{print $NF}'|awk ' FS="=" {print $2}' > perplexity
+grep ppl= -r $1 |awk '{print $2,$3,$NF}'|sed -r 's/[a-zA-Z]{1,3}=//g' > perplexity
