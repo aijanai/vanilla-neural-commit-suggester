@@ -4,9 +4,9 @@ for i in $(seq 1 16); do
 	MODEL_DIR=sockeye-commit-suggester-transformer-head-ablation-$i
 	rm -fr $MODEL_DIR
 	python3 -m sockeye.train \
-	  --batch-size 32 \
+	  --batch-size 96 \
 	  --batch-type sentence \
-	  --device-ids 1 2 \
+	  --device-ids 1 2 3 \
 	  --checkpoint-interval 3000 \
 	  --decode-and-evaluate 100 \
 	  --decoder ssru_transformer \
@@ -22,7 +22,7 @@ for i in $(seq 1 16); do
 	  --optimizer adam \
 	  --num-embed 512:512 \
 	  --num-layers 1:1 \
-	  --transformer-attention-heads $i:$i
+	  --transformer-attention-heads $i:$i \
 	  --source train.26208.diff \
 	  --target train.26208.msg \
 	  --output $MODEL_DIR \
