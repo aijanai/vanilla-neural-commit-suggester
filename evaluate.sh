@@ -6,4 +6,4 @@ exit 1
 fi
 
 sacrebleu --input $1 test.3000.msg  --metrics bleu
-rouge -f test.3000.msg $1--avg
+rouge -f test.3000.msg $1 --avg
