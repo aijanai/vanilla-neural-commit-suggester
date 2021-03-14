@@ -10,7 +10,7 @@ python3 -m sockeye.train \
   --decoder ssru_transformer \
   --embed-dropout 0.2 \
   --initial-learning-rate 0.0001 \
-  --keep-last-params 2 \
+  --keep-last-params 0 \
   --learning-rate-reduce-factor 0.7 \
   --learning-rate-reduce-num-not-improved 2 \
   --encoder transformer \

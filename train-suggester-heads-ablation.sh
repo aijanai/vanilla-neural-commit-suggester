@@ -1,18 +1,18 @@
 #!/bin/bash
 
-for i in $(seq 1 16); do
+for i in 16 32 ; do
 	MODEL_DIR=sockeye-commit-suggester-transformer-head-ablation-$i
-	rm -fr $MODEL_DIR
+	#rm -fr $MODEL_DIR
 	python3 -m sockeye.train \
-	  --batch-size 96 \
+	  --batch-size 64 \
 	  --batch-type sentence \
-	  --device-ids 1 2 3 \
+	  --device-ids 0 1 2 3 \
 	  --checkpoint-interval 3000 \
 	  --decode-and-evaluate 100 \
 	  --decoder ssru_transformer \
 	  --embed-dropout 0.2 \
 	  --initial-learning-rate 0.0001 \
-	  --keep-last-params 2 \
+	  --keep-last-params 0 \
 	  --learning-rate-reduce-factor 0.7 \
 	  --learning-rate-reduce-num-not-improved 2 \
 	  --encoder transformer \
