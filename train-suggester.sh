@@ -1,3 +1,5 @@
+#!/bin/bash
+
 python3 -m sockeye.train \
   --batch-size 64 \
   --batch-type sentence \
