@@ -1,15 +1,15 @@
 #!/bin/bash
-rm -fr sockeye-commit-suggester-liu-bleu
+rm -fr sockeye-commit-suggester-liu
 
 python3 -m sockeye.train \
-  --batch-size 48 \
+  --batch-size 36 \
   --batch-type sentence \
   --device-ids 1 2 3 \
   --checkpoint-interval 3000 \
   --decode-and-evaluate 100 \
-  --decoder ssru_transformer \
+  --decoder transformer \
   --embed-dropout 0.1 \
-  --initial-learning-rate 0.0001 \
+  --initial-learning-rate 0.0002 \
   --learning-rate-warmup 4000 \
   --keep-last-params 0 \
   --learning-rate-reduce-factor 0.7 \
@@ -21,11 +21,11 @@ python3 -m sockeye.train \
   --cache-metric bleu \
   --optimizer adam \
   --num-embed 512:512 \
-  --num-layers 16:2 \
+  --num-layers 2:2 \
   --transformer-attention-heads 8:8 \
   --source liu-dataset/cleaned.train.diff \
   --target liu-dataset/cleaned.train.msg \
-  --output sockeye-commit-suggester-liu-bleu \
+  --output sockeye-commit-suggester-liu\
   --validation-source liu-dataset/cleaned.valid.diff \
   --validation-target liu-dataset/cleaned.valid.msg
 #  --use-cpu \
