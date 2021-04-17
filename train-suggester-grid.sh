@@ -41,7 +41,7 @@ for layers in $(seq 1 8); do
 	    echo "ERROR WITH $MODEL"
 	else
 	    echo "Pruning model"
-	    ./prune_params $MODEL_DIR
+	    ./prune_params.sh $MODEL_DIR
 
 	fi
     done
