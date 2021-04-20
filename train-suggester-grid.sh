@@ -4,7 +4,10 @@ for layers in $(seq 1 8); do
     for heads in 1 2 4 8 16 32 64 128; do
         MODEL_DIR=sockeye-commit-suggester-grid-layer-$layers-head-$heads
 	
-	rm -fr $MODEL_DIR
+	if [[ -d $MODEL_DIR ]]; then
+		echo "Skipping $MODEL_DIR as already existing"
+		continue
+	fi
 
 	echo "Next model: $MODEL_DIR"
 
