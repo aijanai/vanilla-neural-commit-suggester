@@ -6,7 +6,7 @@ python3 -m sockeye.train \
   --device-ids 1 2 3 \
   --checkpoint-interval 3000 \
   --decode-and-evaluate 100 \
-  --decoder ssru_transformer \
+  --decoder transformer \
   --embed-dropout 0.1 \
   --initial-learning-rate 0.0002 \
   --learning-rate-warmup 4000 \
@@ -20,11 +20,11 @@ python3 -m sockeye.train \
   --cache-metric bleu \
   --optimizer adam \
   --num-embed 512:512 \
-  --num-layers 8:8 \
-  --transformer-attention-heads 32:32 \
+  --num-layers 2:2 \
+  --transformer-attention-heads 16:16 \
   --source train.26208.diff \
   --target train.26208.msg \
-  --output sockeye-commit-suggester-grid-layer-8-head-32 \
+  --output sockeye-commit-suggester \
   --validation-source test.3000.diff \
   --validation-target test.3000.msg
 #  --use-cpu \
