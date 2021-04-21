@@ -18,7 +18,9 @@ Train the MT
 ------------
 Data has already been tokenized.
 
-Execute `./train-suggester-simple.sh`.
+Execute `./train-suggester-simple.sh sockeye-commit-suggester train.26208 valid.3000`.
+
+It will search for `train.26208.msg`, `train.26208.diff`, `valid.3000.msg` and `valid.3000.diff`.
 
 If you have a GPU, comment out `--use-cpu` flag.  
 It will take approximately 15GB of GPU RAM on a Tesla P100. Parallel multiple GPUs are supported. Training lasts approximately 1 hour on 3 GPUs.

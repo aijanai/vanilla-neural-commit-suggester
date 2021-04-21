@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ $# -lt 1 ]]; then
+	echo "Usage: $0 <model dir> <training prefix> <validation prefix>"
+	exit 1
+fi
+
 python3 -m sockeye.train \
   --batch-size 48 \
   --batch-type sentence \
@@ -22,9 +27,9 @@ python3 -m sockeye.train \
   --num-embed 512:512 \
   --num-layers 2:2 \
   --transformer-attention-heads 16:16 \
-  --source train.26208.diff \
-  --target train.26208.msg \
-  --output sockeye-commit-suggester \
-  --validation-source test.3000.diff \
-  --validation-target test.3000.msg
+  --source $2.diff \
+  --target $2.msg \
+  --output $1 \
+  --validation-source $3.diff \
+  --validation-target $3.msg
 #  --use-cpu \
