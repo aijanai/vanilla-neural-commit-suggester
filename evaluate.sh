@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if [[ $# -lt 1 ]]; then
-echo "Usage: $0 <input file with translations>"
-exit 1
+	echo "Usage: $0 <input file with translations> <reference>"
+	exit 1
 fi
 
-sacrebleu --input $1 test.3000.msg  --metrics bleu --force
-rouge -f test.3000.msg $1 --avg
+sacrebleu --input $1 $2  --metrics bleu --force
+rouge -f $2 $1 --avg
