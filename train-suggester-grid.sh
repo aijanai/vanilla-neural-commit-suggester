@@ -5,14 +5,20 @@ for layers in $(seq 1 8); do
         MODEL_DIR=sockeye-commit-suggester-grid-layer-$layers-head-$heads
 	
 	if [[ -d $MODEL_DIR ]]; then
-		echo "Skipping $MODEL_DIR as already existing"
-		continue
+		echo "Found existing model dir $MODEL_DIR"
+
+		if [[ -f $MODEL_DIR/params.best ]]; then
+			echo "Skipping $MODEL_DIR as already having a params.best"
+			continue
+		fi
 	fi
 
 	echo "Next model: $MODEL_DIR"
 
+	rm -fr $MODEL_DIR
+
         python3 -m sockeye.train \
-          --batch-size 48 \
+          --batch-size 30 \
           --batch-type sentence \
           --device-ids 1 2 3 \
           --checkpoint-interval 3000 \
@@ -41,11 +47,10 @@ for layers in $(seq 1 8); do
 
 	OUTCOME=$?
 	if [[ $OUTCOME -ne 0 ]]; then
-	    echo "ERROR WITH $MODEL"
+	    echo "ERROR WITH $MODEL_DIR"
 	else
 	    echo "Pruning model"
 	    ./prune_params.sh $MODEL_DIR
-
 	fi
     done
 done
