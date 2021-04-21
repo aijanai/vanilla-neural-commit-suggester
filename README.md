@@ -1,8 +1,10 @@
 Neural Commit Suggester
 =======================
+A machine translation system that translates git commit patches to diff messages.
 
-This is the implementation presented at FOSDEM 19 for [Neural commit message suggester: Proposing git commit messages with neural networks](https://fosdem.org/2019/schedule/event/ml_on_code_commit_message/).  
-It has been ported to Sockeye 2 and it's now based on the Transformer.
+This is an evolution of an implementation presented at FOSDEM 19 for [Neural commit message suggester: Proposing git commit messages with neural networks](https://fosdem.org/2019/schedule/event/ml_on_code_commit_message/), originally based on Google Neural Machine Translation and achieving BLEU 37.6 on Jiang et al. 2017 dataset.
+
+It has been ported to Sockeye 2, it's now based on the Transformer and is over BLEU 40. 
 
 Installation
 ------------
@@ -16,10 +18,10 @@ Train the MT
 ------------
 Data has already been tokenized.
 
-Execute `train-suggester.sh`.
+Execute `./train-suggester-simple.sh`.
 
 If you have a GPU, comment out `--use-cpu` flag.  
-It will take approximately 13GB of GPU RAM on each 3 x Tesla P100 (or 1 x V100). Peplexity was low already after 5 hours, but the training ran for 12 hours before the early stopping.
+It will take approximately 15GB of GPU RAM on a Tesla P100. Parallel multiple GPUs are supported. Training lasts approximately 1 hour on 3 GPUs.
 
 Predict a commit message
 ------------------------
@@ -27,7 +29,7 @@ You can predict a commit message by specifying your model directory with `--mode
 Output commit messages go in a file specified by `--output` parameter.
 
 ```
-sockeye-translate --models sockeye-commit-suggester-raw --use-cpu --input valid.3000.diff --output valid.raw.out
+sockeye-translate --models sockeye-commit-suggester --use-cpu --input valid.3000.diff --output valid.raw.out
 ```
 
 Diff format translates by replacing newlines with `<nl>` and `+++`/`---` signs in front of file names with `ppp`/`mmm`. Everything must be whitespace tokenized. 
@@ -54,4 +56,5 @@ gets crammed to a single line like:
 mmm a / kubernetes / ansible / ansible_config / tasks / docker . yml <nl> ppp b / kubernetes / ansible / ansible_config / tasks / docker . yml <nl>  - name :  Create docker default nexus auth <nl>    template :  <nl>      src :   .  .  /  .  .  / ansible / roles / docker / files / docker-config_staging . json . j2 <nl> -    dest :   .  .  /  .  .  / ansible / roles / docker / files / docker-config_staging . json <nl> +    dest :  "{{item}}" <nl>      force :  true <nl> +  with_items :  <nl> +    -  .  .  /  .  .  / ansible / roles / jenkins / files / docker-config . json <nl> +    -  .  .  /  .  .  / ansible / roles / docker / files / docker-config_staging . json <nl> 
 ```
 
-There is no script to do it since it was reverse engineered from the training set (which I did not generate, it was provided by [Siyuan Jiang](https://sjiang1.github.io/commitgen/) for CommitGen).
+The original dataset and convertion script was provided by [Siyuan Jiang](https://sjiang1.github.io/commitgen/) for CommitGen.  
+An improved version is available at [https://github.com/aijanai/commit-suggester-dataset-builder](https://github.com/aijanai/commit-suggester-dataset-builder).
