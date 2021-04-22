@@ -18,7 +18,7 @@ Train the MT
 ------------
 Data has already been tokenized.
 
-Execute `./train-suggester-simple.sh sockeye-commit-suggester train.26208 valid.3000`.
+Execute `./train-suggester-optimal.sh sockeye-commit-suggester train.26208 valid.3000`.
 
 It will search for `train.26208.msg`, `train.26208.diff`, `valid.3000.msg` and `valid.3000.diff`.
 
