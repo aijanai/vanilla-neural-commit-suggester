@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $# -lt 1 ]]; then
-	echo "Usage: $0 <model dir> <reference>"
+	echo "Usage: $0 <model dir> <input diff>"
 	exit 1
 fi
 
