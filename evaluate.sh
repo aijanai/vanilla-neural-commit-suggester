@@ -5,5 +5,6 @@ if [[ $# -lt 1 ]]; then
 	exit 1
 fi
 
+./multi-bleu.perl $2 < $1
 sacrebleu --input $1 $2  --metrics bleu --force
 rouge -f $2 $1 --avg
