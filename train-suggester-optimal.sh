@@ -5,6 +5,8 @@ if [[ $# -lt 1 ]]; then
 	exit 1
 fi
 
+rm -fr $1
+
 python3 -m sockeye.train \
   --batch-size 48 \
   --batch-type sentence \
