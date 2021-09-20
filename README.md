@@ -13,6 +13,7 @@ Install Sockeye the framework through:
 ```
 pip install sockeye -r requirements.gpu-cu100.txt
 ```
+(more instruction about where to fetch GPU enabling requirements file on [https://awslabs.github.io/sockeye/setup.html](https://awslabs.github.io/sockeye/setup.html))
 
 Train the MT
 ------------
